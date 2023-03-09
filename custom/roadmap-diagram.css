@@ -1,0 +1,103 @@
+#roadmap-diagram-grid {
+    display: grid;
+    grid-template-areas:
+        ".                   dnf5-released      commands-1    commands-2       .           ."
+        ".                   .                  commands-1    commands-2       .           ."
+        ".                   microdnf-obsoleted commands-1    microdnf-removal .           ."
+        ".                   .                  dnf-obsoleted .                dnf-removal ."
+        "roadmap-dummy-start .                  .             .                .           roadmap-dummy-end"
+        ".                   fedora-38          fedora-39     fedora-40        fedora-41   .";
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#dnf5-released {
+    grid-area: dnf5-released;
+    background-color: #a07cbc;
+}
+
+#commands-1 {
+    grid-area: commands-1;
+    background-color: #a07cbc;
+    align-items: start;
+}
+
+#commands-2 {
+    grid-area: commands-2;
+    background-color: #a07cbc;
+}
+
+#microdnf-obsoleted {
+    grid-area: microdnf-obsoleted;
+    background-color: #e59728;
+}
+
+#microdnf-removal {
+    grid-area: microdnf-removal;
+    background-color: #e59728;
+}
+
+#dnf-obsoleted {
+    grid-area: dnf-obsoleted;
+    background-color: #51a2da;
+}
+
+#dnf-removal {
+    grid-area: dnf-removal;
+    background-color: #51a2da;
+}
+
+#fedora-38 {
+    grid-area: fedora-38;
+    font-size: 70%;
+    border: none;
+    box-shadow: none;
+}
+
+#fedora-39 {
+    grid-area: fedora-39;
+    font-size: 70%;
+    border: none;
+    box-shadow: none;
+}
+
+#fedora-40 {
+    grid-area: fedora-40;
+    font-size: 70%;
+    border: none;
+    box-shadow: none;
+}
+
+#fedora-41 {
+    grid-area: fedora-41;
+    font-size: 70%;
+    border: none;
+    box-shadow: none;
+}
+
+#roadmap-dummy-start {
+    grid-area: roadmap-dummy-start;
+    height: 100%;
+    width: 100%;
+}
+
+#roadmap-dummy-end {
+    grid-area: roadmap-dummy-end;
+    height: 100%;
+    width: 100%;
+}
+
+.roadmap-diagram-block {
+    float: left;
+    margin: 10px;
+    margin-bottom: 30px;
+    padding: 8px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 16px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    font-size: 60%;
+}

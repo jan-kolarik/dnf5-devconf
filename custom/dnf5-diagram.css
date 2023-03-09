@@ -1,0 +1,59 @@
+#dnf5-diagram-grid {
+    display: grid;
+    grid-template-areas:
+        ".            .       dnf5-bindings  .           ."
+        ".            libdnf5 libdnf5        libdnf5     ."
+        ".            libdnf5 libdnf5        libdnf5     libdnf5-plugins"
+        ".            libdnf5 libdnf5        libdnf5     ."
+        "dnf5-plugins dnf5    .              dnf5-daemon .";
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+}
+
+#libdnf5 {
+    grid-area: libdnf5;
+    background-color: #51a2da;
+    height: 300px;
+    font-size: 100%;
+}
+
+#dnf5 {
+    grid-area: dnf5;
+    background-color: #a07cbc;
+}
+
+#dnf5-daemon {
+    grid-area: dnf5-daemon;
+    background-color: #a07cbc;
+}
+
+#dnf5-bindings {
+    grid-area: dnf5-bindings;
+    background-color: #a07cbc;
+    width: 170px;
+}
+
+#dnf5-plugins {
+    grid-area: dnf5-plugins;
+    background-color: #32db9a;
+    width: 162px;
+}
+
+#libdnf5-plugins {
+    grid-area: libdnf5-plugins;
+    background-color: #79db32;;
+    width: 162px;
+}
+
+.dnf5-diagram-block {
+    float: left;
+    margin: 10px;
+    padding: 0.2em;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 16px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 62%;
+}

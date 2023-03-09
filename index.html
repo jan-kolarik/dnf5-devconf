@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/white.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/github.css">
+
+    <!-- Custom stylesheets -->
+    <link rel="stylesheet" href="custom/cli.css">
+    <link rel="stylesheet" href="custom/dnf-diagram.css">
+    <link rel="stylesheet" href="custom/dnf5-diagram.css">
+    <link rel="stylesheet" href="custom/load-repos-diagram.css">
+    <link rel="stylesheet" href="custom/pkg-mgr-diagram.css">
+    <link rel="stylesheet" href="custom/roadmap-diagram.css">
+
+    <style>
+        .reveal {
+            --r-background-color: #ededed;
+            --r-heading-color: #333333;
+            --r-main-color: #474747;
+            --r-link-color: #1197c7;
+            --r-link-color-hover: #126a8f;
+            --r-selection-color: #474747;
+            --r-selection-background-color: #70c0dd;
+        }
+
+        .reveal .footer {
+            position: absolute;
+            bottom: 3%;
+            left: 3%;
+            font-size: 0.6em;
+        }
+
+        .reveal .mid-footer {
+            position: absolute;
+            bottom: 3%;
+            left: 42%;
+            font-size: 0.6em;
+        }
+
+        .reveal .redhat-logo {
+            position: absolute;
+            bottom: 87%;
+            left: 3%;
+            width: 6em;
+        }
+
+        .reveal .opaque {
+            opacity: 0.4;
+            filter: alpha(opacity=60);
+        }
+
+        .reveal .opaque:hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        .reveal .zindex-1 {
+            z-index: 1;
+        }
+
+        .reveal .crop-graph {
+            margin-top: -8%;
+        }
+
+        .reveal table.smaller {
+            font-size: 0.5em;
+        }
+
+        .reveal .slides section .fragment.none-space.current-fragment {
+            height: auto;
+        }
+
+        .reveal .slides section .fragment.visible.none-space {
+            height: 0;
+        }
+
+        .reveal .slides section .fragment.none-space {
+            height: 0;
+        }
+
+        .reveal .slides section ul {
+            font-size: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class='footer opaque zindex-1'>
+            <p>
+                <a href="https://github.com/rpm-software-management/dnf5" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-github" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                    </svg> dnf5
+                </a>
+            </p>
+            <p>Pavla Kratochvílová - Jaroslav Mráček - Jan Kolárik</p>
+        </div>
+        <div class='mid-footer opaque zindex-1'>
+        </div>
+        <div class='redhat-logo opaque zindex-1'>
+            <img class="logo" src="img/redhat.svg" />
+        </div>
+        <div class="slides">
+            <section>
+                <h2>DNF5</h2>
+                <h4>Next Generation of Software Management</h4>
+            </section>
+
+            <section>
+                <h3>Content</h3>
+                <ul>
+                    <li class="fragment fade-left">Project background</li>
+                    <li class="fragment fade-left">Features</li>
+                    <li class="fragment fade-left">Road map</li>
+                    <li class="fragment fade-left">DNF5 adoption</li>
+                    <li class="fragment fade-left">Open planning</li>
+                    <li class="fragment fade-left">Changes in DNF5</li>
+                    <li class="fragment fade-left">Demo</li>
+                </ul>
+            </section>
+
+            <section data-auto-animate-duration="0.5" id="pkg-mgr-diagram-slide" data-state="pkg-mgr-diagram">
+                <h4>What is a package manager?</h4>
+                <div>
+                    <div id="pkg-manager-diagram-grid">
+                        <div id="pkg-gui-user" class="pkg-mgr-diagram-block">
+                            <img data-src="img/display.png" style="height: 80px; margin: 0;">
+                            <p style="margin: 0;">GUI user</p>
+                        </div>
+                        <div id="pkg-cli-user" class="pkg-mgr-diagram-block">
+                            <img data-src="img/gnome-terminal.svg" style="height: 80px; margin: 0;">
+                            <p style="margin: 0;">CLI user</p>
+                        </div>
+                        <div id="sw-center" class="pkg-mgr-diagram-block">
+                            <img data-src="img/gnome-software.svg" style="height: 80px; margin: 0;">
+                            <p style="margin: 0;">Software Center</p>
+                        </div>
+                        <div id="pkgkit" class="pkg-mgr-diagram-block">PackageKit</div>
+                        <div id="pkg-high-manager" class="pkg-mgr-diagram-block">High Level Manager (DNF)</div>
+                        <div id="pkg-low-manager" class="pkg-mgr-diagram-block">Low Level Manager (RPM)</div>
+                    </div>
+                    <div id="pkg-gui-user_sw-center" class="pkg-mgr-diagram-line"></div>
+                    <div id="sw-center_pkgkit" class="pkg-mgr-diagram-line"></div>
+                    <div id="pkgkit_pkg-high-manager" class="pkg-mgr-diagram-line"></div>
+                    <div id="pkg-high-manager_pkg-low-manager" class="pkg-mgr-diagram-line"></div>
+                    <div id="pkg-cli-user_pkg-high-manager" class="pkg-mgr-diagram-line"></div>
+                    <div id="pkg-cli-user_pkg-low-manager" class="pkg-mgr-diagram-line pkg-mgr-diagram-dash-line"></div>
+                </div>
+            </section>
+
+            <section data-state="dnf-diagram">
+                <div>
+                    <div id="dnf-diagram-grid">
+                        <div id="libdnf" class="dnf-diagram-block">
+                            <div id="libdnf-grid">
+                                <div id="libdnf-label"><b>LIBDNF</b></div>
+                                <div id="hawkey" class="dnf-diagram-block">hawkey</div>
+                                <div id="python-hawkey" class="dnf-diagram-block">python-hawkey</div>
+                                <div id="libhif" class="dnf-diagram-block">libhif</div>
+                            </div>
+                        </div>
+                        <div id="dnf-plugins" class="dnf-diagram-block">Python<br />plugins</div>
+                        <div id="dnf" class="dnf-diagram-block">dnf</div>
+                        <div id="microdnf" class="dnf-diagram-block">microdnf</div>
+                        <div id="packagekit" class="dnf-diagram-block">PackageKit</div>
+                        <div id="libdnf-plugins" class="dnf-diagram-block">C<br />plugins</div>
+                    </div>
+                    <div id="dnf_dnf-plugins" class="dnf-diagram-line"></div>
+                    <div id="dnf_python-hawkey" class="dnf-diagram-line"></div>
+                    <div id="python-hawkey_hawkey" class="dnf-diagram-line"></div>
+                    <div id="microdnf_hawkey" class="dnf-diagram-line"></div>
+                    <div id="packagekit_hawkey" class="dnf-diagram-line"></div>
+                    <div id="libhif_microdnf" class="dnf-diagram-line"></div>
+                    <div id="libhif_packagekit" class="dnf-diagram-line"></div>
+                    <div id="libhif_libdnf-plugins" class="dnf-diagram-line"></div>
+                </div>
+            </section>
+
+            <section data-state="dnf5-diagram">
+                <div>
+                    <div id="dnf5-diagram-grid">
+                        <div id="libdnf5" class="dnf5-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>LIBDNF5</b></p>
+                                <p style="margin: 0; font-size: 70%;">(C++ API)</p>
+                            </div>
+                        </div>
+                        <div id="dnf5-plugins" class="dnf5-diagram-block">CLI<br />plugins</div>
+                        <div id="dnf5" class="dnf5-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>dnf5</b></p>
+                                <p style="margin: 0; font-size: 70%;">(CLI tool)</p>
+                            </div>
+                        </div>
+                        <div id="dnf5-bindings" class="dnf5-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>SWIG bindings</b></p>
+                                <p style="margin: 0; font-size: 50%;">(<b>Python</b>, Ruby, Perl, ...)</p>
+                            </div>
+                        </div>
+                        <div id="libdnf5-plugins" class="dnf5-diagram-block">C++<br />plugins</div>
+                        <div id="dnf5-daemon" class="dnf5-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>dnf5 daemon</b></p>
+                                <p style="margin: 0; font-size: 70%;">(D-Bus API)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="dnf5_libdnf5" class="dnf-diagram-line"></div>
+                    <div id="dnf5-bindings_libdnf5" class="dnf-diagram-line"></div>
+                    <div id="dnf5-daemon_libdnf5" class="dnf-diagram-line"></div>
+                    <div id="libdnf5-plugins_libdnf5" class="dnf-diagram-line"></div>
+                    <div id="dnf5_dnf5-plugins" class="dnf-diagram-line"></div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Features</h3>
+                <ul>
+                    <li class="fragment fade-left">Lightweight as Microdnf and fully featured as DNF
+                        <ul class="fragment fade-left fade-in-then-out none-space">
+                            <li>MICRODNF install size ~ 115 MB</li>
+                            <li>DNF install size ~ 166 MB</li>
+                            <li>DNF5 install size ~ 114 MB</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left">Integration of plugins into LIBDNF5 library</li>
+                    <li class="fragment fade-left">Fully integrated Modularity in LIBDNF5 workflows</li>
+                    <li class="fragment fade-left">New Daemon with support of Comps groups and modules</li>
+                    <li class="fragment fade-left">Improved API</li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>Improved API</h4>
+                <ul>
+                    <li class="fragment fade-left">Safer workflows
+                        <ul>
+                            <li class="fragment fade-left">Locking of configuration options</li>
+                            <li class="fragment fade-left">Checking workflows</li>
+                            <li class="fragment fade-left">Transparent errors</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left">Transaction reports in structure (API)</li>
+                    <li class="fragment fade-left">Direct usage of configuration
+                        <ul class="fragment fade-left">
+                            <li>Less parameters required in API</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left">Better API -> less code in your project
+                        <ul class="fragment fade-left">
+                            <li>All logic is in libdnf5</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Features</h3>
+                <ul>
+                    <li>Lightweight as Microdnf and fully featured as DNF</li>
+                    <li>Integration of plugins into LIBDNF5 library</li>
+                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
+                    <li>New Daemon with support of Comps groups and modules</li>
+                    <li>Improved API</li>
+                    <li class="fragment fade-left">Performance improvement
+                        <ul>
+                            <li class="fragment fade-left">Loading of repositories</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="load-repos-diagram-slide" data-state="load-repos-diagram">
+                <h4>Loading of repositories</h4>
+                <div>
+                    <div id="load-repos-diagram-grid">
+                        <div id="dnf-repo1-download" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #1</b></p>
+                                <p style="margin: 0; font-size: 70%;">Downloading metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf-repo2-download" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #2</b></p>
+                                <p style="margin: 0; font-size: 70%;">Downloading metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf-repo1-load" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #1</b></p>
+                                <p style="margin: 0; font-size: 70%;">Processing metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf-repo2-load" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #2</b></p>
+                                <p style="margin: 0; font-size: 70%;">Processing metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf5-repo1-download" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #1</b></p>
+                                <p style="margin: 0; font-size: 70%;">Downloading metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf5-repo2-download" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #2</b></p>
+                                <p style="margin: 0; font-size: 70%;">Downloading metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf5-repo1-load" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #1</b></p>
+                                <p style="margin: 0; font-size: 70%;">Processing metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf5-repo2-load" class="load-repos-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Repo #2</b></p>
+                                <p style="margin: 0; font-size: 70%;">Processing metadata</p>
+                            </div>
+                        </div>
+                        <div id="dnf-dummy-start">DNF</div>
+                        <div id="dnf5-dummy-start">DNF5</div>
+                        <div id="dnf5-dummy-end"></div>
+                    </div>
+                    <div id="dnf-repo1-download_dnf-repo1-load" class="load-repos-diagram-line"></div>
+                    <div id="dnf-repo1-load_dnf-repo2-download" class="load-repos-diagram-line"></div>
+                    <div id="dnf-repo2-download_dnf-repo2-load" class="load-repos-diagram-line"></div>
+                    <div id="dnf5-dummy-start_dnf5-dummy-end" class="load-repos-diagram-line"></div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Features</h3>
+                <ul>
+                    <li>Lightweight as Microdnf and fully featured as DNF</li>
+                    <li>Integration of plugins into LIBDNF5 library</li>
+                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
+                    <li>New Daemon with support of Comps groups and modules</li>
+                    <li>Improved API</li>
+                    <li>Performance improvement
+                        <ul>
+                            <li>Loading of repositories</li>
+                            <li class="fragment fade-left">Optional download of filelists</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>Optional download of filelists</h4>
+                <div style="display: flex; text-align: left; font-size: 80%;">
+                    <div style="flex: 50%;">
+                        <p><b>Positives</b></p>
+                        <ul>
+                            <li>Smaller downloads</li>
+                            <li>Faster processing of metadata</li>
+                            <li>Faster transaction resolvement</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 50%;" class="fragment fade-left">
+                        <p><b>Negatives</b></p>
+                        <ul>
+                            <li>File and provide searches
+                                <ul>
+                                    <li>dnf provides /usr/lib/&lt;something&gt;</li>
+                                </ul>
+                            </li>
+                            <li>Unsatisfied dependencies
+                                <ul>
+                                    <li>Using file provides is against Fedora <a
+                                            href="https://docs.fedoraproject.org/en-US/packaging-guidelines/#_file_and_directory_dependencies"
+                                            target="_blank">guidelines</a></li>
+                                    <li>In Fedora 38
+                                        <ul>
+                                            <li>72 source packages uses file provides in requires</li>
+                                            <li>36 different file provides</li>
+                                            <li>Terminus-fonts requires: /usr/lib/kbd</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Features</h3>
+                <ul>
+                    <li>Lightweight as Microdnf and fully featured as DNF</li>
+                    <li>Integration of plugins into LIBDNF5 library</li>
+                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
+                    <li>New Daemon with support of Comps groups and modules</li>
+                    <li>Improved API</li>
+                    <li>Performance improvement
+                        <ul>
+                            <li>Loading of repositories</li>
+                            <li>Optional download of filelists</li>
+                            <li class="fragment fade-left">RPM queries</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>RPM queries - Repoquery</h4>
+                <div style="display: flex; text-align: left; font-size: 80%;">
+                    <div style="flex: 50%;">
+                        <p><b>DNF</b></p>
+                        <ul>
+                            <li>dnf repoquery dnf
+                                <ul>
+                                    <li>0.87 s</li>
+                                </ul>
+                            </li>
+                            <li>dnf repoquery $(rpm -qa)
+                                <ul>
+                                    <li><b>4.06 s</b></li>
+                                </ul>
+                            </li>
+                            <p></p>
+                            <li>dnf repoquery --whatdepends 'dnf*'
+                                <ul>
+                                    <li><b>82.9 s</b></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="flex: 50%;">
+                        <p><b>DNF5</b></p>
+                        <ul>
+                            <li>dnf5 repoquery dnf
+                                <ul>
+                                    <li>0.76 s</li>
+                                </ul>
+                            </li>
+                            <li>dnf5 repoquery $(rpm -qa)
+                                <ul>
+                                    <li><b>1.42 s</b></li>
+                                </ul>
+                            </li>
+                            <p></p>
+                            <li>dnf5 repoquery --whatdepends 'dnf*'
+                                <ul>
+                                    <li><b>25.1 s</b></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>RPM queries - Upgrade</h4>
+                <div style="display: flex; text-align: left; font-size: 80%;">
+                    <div style="flex: 50%;">
+                        <p><b>DNF</b></p>
+                        <ul>
+                            <li>dnf upgrade dnf --assumeno
+                                <ul>
+                                    <li>1.02 s</li>
+                                </ul>
+                            </li>
+                            <li>dnf upgrade $(rpm -qa) --assumeno
+                                <ul>
+                                    <li><b>15.77 s</b></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="flex: 50%;">
+                        <p><b>DNF5</b></p>
+                        <ul>
+                            <li>dnf5 upgrade dnf --assumeno
+                                <ul>
+                                    <li>0.87 s</li>
+                                </ul>
+                            </li>
+                            <li>dnf5 upgrade $(rpm -qa) --assumeno
+                                <ul>
+                                    <li><b>2.57 s</b></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section data-auto-animate id="roadmap-diagram-slide" data-state="roadmap-diagram">
+                <h4>Road map</h4>
+                <div>
+                    <div id="roadmap-diagram-grid">
+                        <div id="dnf5-released" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>DNF5</b></p>
+                                <p style="margin: 0; font-size: 70%;">released</p>
+                            </div>
+                        </div>
+                        <div id="microdnf-obsoleted" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>MICRODNF</b></p>
+                                <p style="margin: 0; font-size: 70%;">obsoleted</p>
+                            </div>
+                        </div>
+                        <div id="microdnf-removal" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>MICRODNF</b></p>
+                                <p style="margin: 0; font-size: 70%;">removal</p>
+                            </div>
+                        </div>
+                        <div id="dnf-obsoleted" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>DNF</b></p>
+                                <p style="margin: 0; font-size: 70%;">obsoleted</p>
+                            </div>
+                        </div>
+                        <div id="dnf-removal" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>DNF</b></p>
+                                <p style="margin: 0; font-size: 70%;">removal</p>
+                            </div>
+                        </div>
+                        <div id="commands-1" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0; font-size: 70%;"><b>DNF5 commands</b></p>
+                                <ul style="margin: 0; font-size: 60%;">
+                                    <li>autoremove</li>
+                                    <li>check-update</li>
+                                    <li>info</li>
+                                    <li>list</li>
+                                    <li>system-upgrade</li>
+                                    <li>dnf5-automatic<br />--forcearch</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="commands-2" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0; font-size: 70%;"><b>DNF5 commands</b></p>
+                                <ul style="margin: 0; font-size: 70%;">
+                                    <li>check</li>
+                                    <li>shell</li>
+                                    <li>updateinfo</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="fedora-38" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Fedora 38</b></p>
+                                <p style="margin: 0; font-size: 70%;">2023 Q1</p>
+                            </div>
+                        </div>
+                        <div id="fedora-39" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Fedora 39</b></p>
+                                <p style="margin: 0; font-size: 70%;">2023 Q3</p>
+                            </div>
+                        </div>
+                        <div id="fedora-40" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Fedora 40</b></p>
+                                <p style="margin: 0; font-size: 70%;">2024 Q1</p>
+                            </div>
+                        </div>
+                        <div id="fedora-41" class="roadmap-diagram-block">
+                            <div>
+                                <p style="margin: 0;"><b>Fedora 41</b></p>
+                                <p style="margin: 0; font-size: 70%;">2024 Q3</p>
+                            </div>
+                        </div>
+                        <div id="roadmap-dummy-start"></div>
+                        <div id="roadmap-dummy-end"></div>
+                    </div>
+                    <div id="roadmap-dummy-start_roadmap-dummy-end" class="roadmap-diagram-line"></div>
+                </div>
+            </section>
+
+            <section>
+                <h4>Adoption of DNF5 by other teams</h4>
+                <ul>
+                    <li class="fragment fade-left">DNF5 API stability
+                        <ul>
+                            <li class="fragment fade-left">Stabilizing of API during Fedora 38</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left">Why to be an early adopter of DNF5?
+                        <ul>
+                            <li class="fragment fade-left">Application using DNF CLI
+                                <ul>
+                                    <li class="fragment fade-left">Test your application and report missing commands or
+                                        options</li>
+                                </ul>
+                            </li>
+                            <li class="fragment fade-left">Application using DNF, hawkey, or libdnf API
+                                <ul>
+                                    <li class="fragment fade-left">Help us with shaping API</li>
+                                    <li class="fragment fade-left">Share with us your use cases</li>
+                                    <li class="fragment fade-left">Request missing features</li>
+                                </ul>
+                            </li>
+                            <li class="fragment fade-left">Planned removal of dnf, python3-dnf, python3-hawkey, libdnf,
+                                python3-libdnf, dnf-plugins from Fedora distribution</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>Open Planning</h4>
+                <div style="display: flex;">
+                    <div style="flex: 33.3%;">
+                        <div class="fragment fade-left" style="display: flex; align-items: center;">
+                            <div style="flex: 50%;">
+                                <img class="logo" src="img/github.svg" style="width: 100px;" />
+                            </div>
+                            <div style="flex: 50%; text-align: left;"">
+                                <p>GitHub</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="fragment fade-left"><a href="https://github.com/rpm-software-management/dnf5/issues" target="_blank">Issues</a></li>
+                            <li class="fragment fade-left"><a href="https://github.com/rpm-software-management/dnf5/pulls" target="_blank">Pull requests</a></li>
+                            <li class="fragment fade-left"><a href="https://github.com/orgs/rpm-software-management/projects/4" target="_blank">Kanban board</a></li>
+                            <li class="fragment fade-left"><a href="https://github.com/rpm-software-management/dnf5/discussions" target="_blank">Discussions</a></li>
+                        </ul>
+                    </div>
+                    <div style="flex: 33.3%;">
+                        <div class="fragment fade-left" style="display: flex; align-items: center;">
+                            <div style="flex: 50%;">
+                                <img class="logo" src="img/bugzilla.svg" style="width: 100px;" />
+                            </div>
+                            <div style="flex: 50%; text-align: left;">
+                                <p>Bugzilla</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="fragment fade-left"><a href="https://bugzilla.redhat.com/buglist.cgi?component=dnf5&product=Fedora" target="_blank">Fedora bugs</a></li>
+                            <p><br/></p>
+                        </ul>
+                    </div>
+                    <div style="flex: 33.3%;">
+                        <div class="fragment fade-left" style="display: flex; align-items: center;">
+                            <div style="flex: 50%;">
+                                <img class="logo" src="img/jira.svg" style="width: 100px;" />
+                            </div>
+                            <div style="flex: 50%; text-align: left;"">
+                                <p>Jira</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li class="fragment fade-left">RHEL 10 bugs</li>
+                            <li class="fragment fade-left">Confidential topics</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>Changes in DNF5</h4>
+                <ul>
+                    <li class="fragment fade-left" data-fragment-index="1">Workflow optimization
+                        <ul class="fragment fade-out none-space" data-fragment-index="5">
+                            <li class="fragment fade-left" data-fragment-index="2">Configuration locking</li>
+                            <li class="fragment fade-left" data-fragment-index="3">Modularity integration</li>
+                            <li class="fragment fade-left" data-fragment-index="4">Unified API for downloading</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left" data-fragment-index="5">Repositories loading
+                        <ul class="fragment fade-out none-space" data-fragment-index="8">
+                            <li class="fragment fade-left" data-fragment-index="6">Load and download in parallel</li>
+                            <li class="fragment fade-left" data-fragment-index="7">Configurable metadata</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left" data-fragment-index="8">Configuration options
+                        <ul class="fragment fade-out none-space" data-fragment-index="14">
+                            <li class="fragment fade-left" data-fragment-index="9">Stored at a single place</li>
+                            <li class="fragment fade-left" data-fragment-index="10">Naming preserved
+                                <ul class="fragment fade-out none-space" data-fragment-index="14">
+                                    <li class="fragment fade-left" data-fragment-index="11">Exceptions like
+                                        --no-&lt;option&gt;</li>
+                                    <li class="fragment fade-left" data-fragment-index="12">Compatibility aliases</li>
+                                    <li class="fragment fade-left" data-fragment-index="13">strict ⟶ skip_broken,
+                                        skip_unavailable</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left" data-fragment-index="14">CLI changes
+                        <ul class="fragment fade-out none-space" data-fragment-index="18">
+                            <li class="fragment fade-left" data-fragment-index="15">No optional arguments</li>
+                            <li class="fragment fade-left" data-fragment-index="16">Bounding options</li>
+                            <li class="fragment fade-left" data-fragment-index="17">Feedback welcome</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-left" data-fragment-index="18">Bash autocompletion</li>
+                    <li class="fragment fade-left" data-fragment-index="19">Configurable aliases</li>
+                </ul>
+            </section>
+
+            <section>
+                <h4>CLI DEMO</h4>
+                <div style="display: flex;">
+                    <div style="flex: 50%;">
+                        <p>DNF</p>
+                    </div>
+                    <div style="flex: 50%;">
+                        <p>DNF5</p>
+                    </div>
+                </div>
+                <div style="display: flex; height: 420px;">
+                    <div class="terminal-split terminal-shadow" style="flex: 50%; overflow: hidden;">
+                        <iframe class="terminal" data-id="term1" data-port=6125 style="max-width: 104%; width: 104%; max-height: 100%; height: 100%;"></iframe>
+                    </div>
+                    <div class="terminal-split terminal-shadow" style="flex: 50%; overflow: hidden;">
+                        <iframe class="terminal" data-id="term2" data-port=6125 style="max-width: 104%; width: 104%; max-height: 100%; height: 100%;"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>API DEMO</h4>
+                <div class="r-stack">
+                    <pre style="font-size: 18px; width: 68%;">
+                        <code class="hljs language-python" data-trim data-line-numbers="|1|3-5|7-9|11-12|14-16">
+                            import libdnf5
+
+                            base = libdnf5.base.Base()
+                            base.load_config_from_file()
+                            base.setup()
+
+                            sack = base.get_repo_sack()
+                            sack.create_repos_from_system_configuration()
+                            sack.update_and_load_enabled_repos(True)
+
+                            goal = libdnf5.base.Goal(base)
+                            goal.add_install('zlib')
+
+                            transaction = goal.resolve()
+                            transaction.download()
+                            transaction.run()
+                        </code>
+                    </pre>
+                    <div style="max-width: 68%; width: 68%; max-height: 100%; height: 100%; overflow: hidden;">
+                        <iframe class="fragment fade-up terminal" data-id="term3" data-port=6126 src="no-terminal.html" style="max-width: 103%; width: 103%; max-height: 100%; height: 100%;"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>Interactive console</h4>
+                <div class="terminal-shadow" style="height: 500px; overflow: hidden;">
+                    <iframe class="terminal" data-id="term4" data-port=6126 style="max-width: 102%; width: 102%; max-height: 100%; height: 100%;"></iframe>
+                </div>
+            </section>
+
+            <section>
+                <h4>Deploying a simple DNF5 plugin</h4>
+                <div class="r-stack">
+                    <div class="fragment fade-out no-space" data-fragment-index="5">
+                        <p class="fragment" data-fragment-index="1">What do we need?</p>
+                        <ul>
+                            <li class="fragment fade-up" data-fragment-index="2">Devel and bindings packages</li>
+                            <li class="fragment fade-up" data-fragment-index="3">Template sources</li>
+                            <li class="fragment fade-up" data-fragment-index="4">Build tools (f.e. CMake)</li>
+                        </ul>
+                    </div>
+                    <div class="fragment" data-fragment-index="5">
+                        <p>How to write it?</p>
+                        <ul>
+                            <li class="fragment fade-up" data-fragment-index="6">Definition</li>
+                            <li class="fragment fade-up" data-fragment-index="7">Implementation</li>
+                            <li class="fragment fade-up" data-fragment-index="8">Adapter A.K.A. boilerplate</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>Deploying a simple DNF5 plugin</h4>
+                <p>Implementation</p>
+                <pre style="font-size: 16px; width: 80%;">
+                    <code class="hljs language-cpp" data-trim data-line-numbers="|8-13|15-17|19-21|23-25">
+                        <script type="text/template">
+                            #include "example.hpp"
+                            #include <iostream>
+
+                            namespace dnf5 {
+
+                            using namespace libdnf::cli;
+
+                            void ExampleCommand::set_parent_command() {
+                                auto argument_parser = get_session().get_argument_parser();
+                                auto parent_command = argument_parser.get_root_command();
+                                auto this_command = get_argument_parser_command();
+                                parent_command->register_command(this_command);
+                            }
+
+                            void ExampleCommand::set_argument_parser() {
+                                get_argument_parser_command()->set_description("Example command");
+                            }
+
+                            void ExampleCommand::configure() {
+                                get_context().set_quiet(true);
+                            }
+
+                            void ExampleCommand::run() {
+                                std::cout << "YES !!! We did it!" << std::endl;
+                            }
+                        </script>
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h4>Deploying a simple DNF5 plugin</h4>
+                <p>Adapter</p>
+                <pre style="font-size: 16px; width: 82%;">
+                    <code class="hljs language-cpp" data-trim data-line-numbers="|9-21|23-41|58-62|78-85">
+                        <script type="text/template">
+                            #include "example.hpp"
+
+                            #include <dnf5/iplugin.hpp>
+
+                            using namespace dnf5;
+
+                            namespace {
+
+                            constexpr const char * PLUGIN_NAME {"example"};
+
+                            constexpr PluginVersion PLUGIN_VERSION {
+                                .major = 1, .minor = 0, .micro = 0
+                            };
+
+                            constexpr const char * attrs[] {
+                                "author.name", "author.email", "description", nullptr
+                            };
+
+                            constexpr const char * attrs_value[] {
+                                "Some Excited Guy", "sponsor@dnf5.com", "example"
+                            };
+
+                            class ExamplePlugin : public IPlugin {
+                            public:
+                                using IPlugin::IPlugin;
+
+                                PluginAPIVersion get_api_version() const noexcept override { 
+                                    return PLUGIN_API_VERSION; 
+                                }
+
+                                const char * get_name() const noexcept override { 
+                                    return PLUGIN_NAME; 
+                                }
+
+                                PluginVersion get_version() const noexcept override { 
+                                    return PLUGIN_VERSION; 
+                                }
+
+                                const char * const * get_attributes() const noexcept override { 
+                                    return attrs; 
+                                }
+
+                                const char * get_attribute(const char * attribute) 
+                                    const noexcept override {
+                                    for (size_t i = 0; attrs[i]; ++i) {
+                                        if (std::strcmp(attribute, attrs[i]) == 0) {
+                                            return attrs_value[i];
+                                        }
+                                    }
+                                    return nullptr;
+                                }
+
+                                std::vector<std::unique_ptr<Command>> create_commands() override;
+
+                                void finish() noexcept override {}
+                            };
+
+                            std::vector<std::unique_ptr<Command>> ExamplePlugin::create_commands() {
+                                std::vector<std::unique_ptr<Command>> commands;
+                                commands.push_back(std::make_unique<ExampleCommand>(get_context()));
+                                return commands;
+                            }
+
+                            }
+
+                            PluginAPIVersion dnf5_plugin_get_api_version(void) {
+                                return PLUGIN_API_VERSION;
+                            }
+
+                            const char * dnf5_plugin_get_name(void) {
+                                return PLUGIN_NAME;
+                            }
+
+                            PluginVersion dnf5_plugin_get_version(void) {
+                                return PLUGIN_VERSION;
+                            }
+
+                            IPlugin * dnf5_plugin_new_instance(
+                                ApplicationVersion version, Context & context) {
+                                try {
+                                    return new ExamplePlugin(context);    
+                                } catch(...) {
+                                    return nullptr;
+                                }
+                            }
+
+                            void dnf5_plugin_delete_instance(IPlugin * plugin_object) {
+                                delete plugin_object;
+                            }
+                        </script>
+                    </code>
+                </pre>
+            </section>
+
+            <section>
+                <h4>Deploying a simple DNF5 plugin</h4>
+                <p>Build it & run it!</p>
+                <div class="terminal-shadow" style="height: 400px; overflow: hidden;">
+                    <iframe class="terminal" data-port=6126 data-id="term5" style="max-width: 102%; width: 102%; max-height: 100%; height: 100%;"></iframe>
+                </div>
+            </section>
+
+            <section>
+                <h4>Team members</h4>
+                <div style="display: flex; font-size: 80%;">
+                    <div style="flex: 50%;">
+                        <p><b>Software Engineers</b></p>
+                        <ul>
+                            <li>Marek Blaha</li>
+                            <li>David Cantrell</li>
+                            <li>Evan Goode</li>
+                            <li>Jan Kolárik</li>
+                            <li>Pavla Kratochvílová</li>
+                            <li>Aleš Matěj</li>
+                            <li>Jaroslav Mráček</li>
+                            <li>Jaroslav Rohel</li>
+                            <li>Nicola Sella</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 50%;">
+                        <p><b>Quality Engineers</b></p>
+                        <ul>
+                            <li>Tomáš Bajer</li>
+                            <li>Martin Banáš</li>
+                            <li>Jan Blažek</li>
+                            <li>Eva Mráková</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>How to reach us</h4>
+                <ul>
+                    <li>Community
+                        <ul>
+                            <li><a href="https://github.com/rpm-software-management/dnf5" target="_blank">GitHub</a></li>
+                            <li><a href="https://bugzilla.redhat.com" target="_blank">Bugzilla</a></li>
+                        </ul>
+                    </li>
+                    <li>Red Hatters
+                        <ul>
+                            <li>Slack</li>
+                            <li>Mailing list (TBD)</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="fragment fade-up">
+                    <hr>
+                    <p>Thank you for joining us!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+
+    <!-- Custom scripts -->
+    <script src="custom/jquery-latest.min.js"></script>
+    <script src="custom/leader-line.min.js"></script>
+    <script src="custom/diagram.js"></script>
+
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+
+        var pkgMgrLines = [];
+        var loadReposLines = [];
+        var roadmapLines = [];
+
+        Reveal.initialize({
+            transition: 'fade',
+            hash: true,
+            showSlideNumber: 'speaker',
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        });
+
+        Reveal.configure({
+            pdfSeparateFragments: false
+        });
+
+        Reveal.on('slidechanged', event => {
+            if (event.currentSlide.id == 'pkg-mgr-diagram-slide') {
+                packageManagerDiagramInit();
+            } else {
+                pkgMgrLines.forEach(line => {
+                    line.hide('none');
+                });
+            }
+
+            if (event.currentSlide.id == 'load-repos-diagram-slide') {
+                loadReposDiagramInit();
+            } else {
+                loadReposLines.forEach(line => {
+                    line.hide('none');
+                });
+            }
+
+            if (event.currentSlide.id == 'roadmap-diagram-slide') {
+                roadmapDiagramInit();
+            } else {
+                roadmapLines.forEach(line => {
+                    line.hide('none');
+                });
+            }
+        });
+
+        // Initialize diagrams
+        Reveal.on('dnf-diagram', () => {
+            dnfDiagramInit();
+        });
+
+        Reveal.on('ready', event => {
+            var searchParams = new URLSearchParams(window.location.search);
+            var ttyParam = searchParams.get('tty');
+            if (ttyParam) {
+                document.querySelectorAll('.terminal').forEach(function(element) {
+                    element.src = 'http://' + ttyParam + ':' + element.dataset.port;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+#load-repos-diagram-grid {
+    display: grid;
+    place-items: center;
+    grid-template-areas:
+        "dnf-dummy-start    . dnf5-dummy-start    dnf5-dummy-start"
+        "dnf-repo1-download . dnf5-repo1-download ."
+        "dnf-repo1-load     . dnf5-repo2-download dnf5-repo1-load"
+        "dnf-repo2-download . .                   dnf5-repo2-load"
+        "dnf-repo2-load     . dnf5-dummy-end      dnf5-dummy-end";
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+#dnf-repo1-download {
+    grid-area: dnf-repo1-download;
+    background-color: #a07cbc;
+}
+
+#dnf-repo2-download {
+    grid-area: dnf-repo2-download;
+    background-color: #a07cbc;
+}
+
+#dnf-repo1-load {
+    grid-area: dnf-repo1-load;
+    background-color: #e59728;
+}
+
+#dnf-repo2-load {
+    grid-area: dnf-repo2-load;
+    background-color: #e59728;
+}
+
+#dnf5-repo1-download {
+    grid-area: dnf5-repo1-download;
+    background-color: #a07cbc;
+}
+
+#dnf5-repo2-download {
+    grid-area: dnf5-repo2-download;
+    background-color: #a07cbc;
+}
+
+#dnf5-repo1-load {
+    grid-area: dnf5-repo1-load;
+    background-color: #e59728;
+}
+
+#dnf5-repo2-load {
+    grid-area: dnf5-repo2-load;
+    background-color: #e59728;
+}
+
+#dnf5-dummy-start {
+    grid-area: dnf5-dummy-start;
+    height: 100%;
+    width: 100%;
+}
+
+#dnf5-dummy-end {
+    grid-area: dnf5-dummy-end;
+    height: 100%;
+    width: 100%;
+}
+
+.load-repos-diagram-block {
+    float: left;
+    margin: 10px;
+    margin-bottom: 30px;
+    padding: 8px;
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 16px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 150px;
+    font-size: 60%;
+}

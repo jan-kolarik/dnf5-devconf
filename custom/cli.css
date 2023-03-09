@@ -1,0 +1,16 @@
+.terminal-split {
+    margin-right: 10px;
+}
+
+.terminal-shadow {
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.reveal pre code {
+    max-height: 400px !important;
+}
+
+#code {
+    font-size: 18px; 
+    width: 60%;
+}
