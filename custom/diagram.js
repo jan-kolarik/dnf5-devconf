@@ -51,7 +51,7 @@ function packageManagerDiagramInit() {
         var pkgMgrLine = new LeaderLine($('#' + connections[0])[0], $('#' + connections[1])[0], 
         {
             color: 'rgba(0, 0, 0, 0.527)', 
-            size: 8, 
+            size: 6 * document.body.style.getPropertyValue('--slide-scale'), 
             hide: true,
             path: dashed ? 'fluid' : 'straight',
             dash: dashed
@@ -75,7 +75,7 @@ function loadReposDiagramInit() {
         var loadReposLine = new LeaderLine($('#' + connections[0])[0], $('#' + connections[1])[0], 
         {
             color: 'rgba(0, 0, 0, 0.527)', 
-            size: 8, 
+            size: 6 * document.body.style.getPropertyValue('--slide-scale'), 
             hide: true,
             path: 'straight'
         });
@@ -98,7 +98,7 @@ function roadmapDiagramInit() {
         var roadmapLine = new LeaderLine($('#' + connections[0])[0], $('#' + connections[1])[0], 
         {
             color: 'rgba(0, 0, 0, 0.527)', 
-            size: 8, 
+            size: 6 * document.body.style.getPropertyValue('--slide-scale'), 
             hide: true,
             path: 'straight'
         });
