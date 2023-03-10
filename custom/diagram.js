@@ -75,7 +75,7 @@ function loadReposDiagramInit() {
         var loadReposLine = new LeaderLine($('#' + connections[0])[0], $('#' + connections[1])[0], 
         {
             color: 'rgba(0, 0, 0, 0.527)', 
-            size: 6, 
+            size: 8, 
             hide: true,
             path: 'straight'
         });
