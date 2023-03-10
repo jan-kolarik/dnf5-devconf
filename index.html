@@ -1055,8 +1055,9 @@
             var searchParams = new URLSearchParams(window.location.search);
             var ttyParam = searchParams.get('tty');
             if (ttyParam) {
+                var protocol = window.location.protocol == 'https:' ? 'https:' : 'http:';
                 document.querySelectorAll('.terminal').forEach(function(element) {
-                    element.src = 'http://' + ttyParam + ':' + element.dataset.port;
+                    element.src = protocol + '//' + ttyParam + ':' + element.dataset.port;
                 });
             }
         });
