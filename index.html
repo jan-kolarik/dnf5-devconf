@@ -92,6 +92,25 @@
             height: auto;
         }
 
+        .reveal .slides .fragment.fade-children {
+            opacity: 1;
+	        visibility: inherit;
+        }
+
+        .reveal .slides .fragment.fade-children.visible > li {
+            opacity: 0.3;
+	        visibility: inherit;
+        }
+
+        .reveal .slides .fragment.highlight-black {
+            opacity: 1;
+	        visibility: inherit;
+        }
+
+        .reveal .slides .fragment.highlight-black.current-fragment {
+            opacity: 1 !important;
+        }
+
         .reveal .slides section ul {
             font-size: 80%;
         }
@@ -233,9 +252,9 @@
 
             <section>
                 <h4>Features</h4>
-                <ul>
-                    <li>Lightweight as Microdnf and fully featured as DNF
-                        <ul class="fragment fade-in-then-out none-space">
+                <ul class="fragment fade-children" data-fragment-index="1">
+                    <li class="fragment highlight-black" data-fragment-index="1">Lightweight as Microdnf and fully featured as DNF
+                        <ul class="fragment fade-in-then-out none-space" data-fragment-index="1">
                             <li>Install sizes:
                                 <ul>
                                     <li>MICRODNF - 115 MB</li>
@@ -245,11 +264,10 @@
                             </li>
                         </ul>
                     </li>
-                    <p class="fragment" style="margin: 0;"></p>
-                    <li>Integration of plugins into LIBDNF5 library</li>
-                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
-                    <li>New Daemon with support of Comps groups and modules</li>
-                    <li>Improved API</li>
+                    <li class="fragment highlight-black">Integration of plugins into LIBDNF5 library</li>
+                    <li class="fragment highlight-black">Fully integrated Modularity in LIBDNF5 workflows</li>
+                    <li class="fragment highlight-black">New Daemon with support of Comps groups and modules</li>
+                    <li class="fragment highlight-black">Improved API</li>
                     <li>Performance improvement</li>
                 </ul>
             </section>
@@ -281,13 +299,15 @@
             <section>
                 <h4>Features</h4>
                 <ul>
-                    <li>Lightweight as Microdnf and fully featured as DNF</li>
-                    <li>Integration of plugins into LIBDNF5 library</li>
-                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
-                    <li>New Daemon with support of Comps groups and modules</li>
-                    <li>Improved API</li>
-                    <li>Performance improvement
-                        <ul class="fragment fade-left">
+                    <span style="opacity: 0.3;">
+                        <li>Lightweight as Microdnf and fully featured as DNF</li>
+                        <li>Integration of plugins into LIBDNF5 library</li>
+                        <li>Fully integrated Modularity in LIBDNF5 workflows</li>
+                        <li>New Daemon with support of Comps groups and modules</li>
+                        <li>Improved API</li>
+                    </span>
+                    <li style="opacity: 1.0;">Performance improvement
+                        <ul>
                             <li>Loading of repositories</li>
                             <li>Optional download of filelists</li>
                             <li>RPM queries</li>
@@ -295,7 +315,7 @@
                     </li>
                 </ul>
             </section>
-
+            
             <section id="load-repos-diagram-slide" data-state="load-repos-diagram">
                 <h4>Loading of repositories</h4>
                 <div>
@@ -954,12 +974,12 @@
                         <ul>
                             <li>Slack
                                 <ul>
-                                    <li># team-software-management</li>
+                                    <li><a href="https://app.slack.com/client/T027F3GAJ/C04RFANDEN4"># team-software-management</a></li>
                                 </ul>
                             </li>
                             <li>Mailing list
                                 <ul>
-                                    <li>TBD</li>
+                                    <li><a href="mailto:sst-cs-software-management@redhat.com" target="_blank">sst-cs-software-management@redhat.com</a></li>
                                 </ul>
                             </li>
                         </ul>
