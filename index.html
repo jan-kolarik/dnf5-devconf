@@ -88,6 +88,10 @@
             height: 0;
         }
 
+        .reveal .slides section .fragment.fade-in-then-out.none-space.current-fragment {
+            height: auto;
+        }
+
         .reveal .slides section ul {
             font-size: 80%;
         }
@@ -228,40 +232,46 @@
             </section>
 
             <section>
-                <h3>Features</h3>
+                <h4>Features</h4>
                 <ul>
-                    <li class="fragment fade-left">Lightweight as Microdnf and fully featured as DNF
-                        <ul class="fragment fade-left fade-in-then-out none-space">
-                            <li>MICRODNF install size ~ 115 MB</li>
-                            <li>DNF install size ~ 166 MB</li>
-                            <li>DNF5 install size ~ 114 MB</li>
+                    <li>Lightweight as Microdnf and fully featured as DNF
+                        <ul class="fragment fade-in-then-out none-space">
+                            <li>Install sizes:
+                                <ul>
+                                    <li>MICRODNF - 115 MB</li>
+                                    <li>DNF - 166 MB</li>
+                                    <li>DNF5 - <b>114 MB</b></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
-                    <li class="fragment fade-left">Integration of plugins into LIBDNF5 library</li>
-                    <li class="fragment fade-left">Fully integrated Modularity in LIBDNF5 workflows</li>
-                    <li class="fragment fade-left">New Daemon with support of Comps groups and modules</li>
-                    <li class="fragment fade-left">Improved API</li>
+                    <p class="fragment" style="margin: 0;"></p>
+                    <li>Integration of plugins into LIBDNF5 library</li>
+                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
+                    <li>New Daemon with support of Comps groups and modules</li>
+                    <li>Improved API</li>
+                    <li>Performance improvement</li>
                 </ul>
             </section>
 
             <section>
                 <h4>Improved API</h4>
                 <ul>
-                    <li class="fragment fade-left">Safer workflows
+                    <li>Safer workflows
                         <ul>
-                            <li class="fragment fade-left">Locking of configuration options</li>
-                            <li class="fragment fade-left">Checking workflows</li>
-                            <li class="fragment fade-left">Transparent errors</li>
+                            <li>Locking of configuration options</li>
+                            <li>Checking workflows</li>
+                            <li>Transparent errors</li>
                         </ul>
                     </li>
-                    <li class="fragment fade-left">Transaction reports in structure (API)</li>
-                    <li class="fragment fade-left">Direct usage of configuration
-                        <ul class="fragment fade-left">
+                    <li>Transaction reports in structure (API)</li>
+                    <li>Direct usage of configuration
+                        <ul>
                             <li>Less parameters required in API</li>
                         </ul>
                     </li>
-                    <li class="fragment fade-left">Better API -> less code in your project
-                        <ul class="fragment fade-left">
+                    <li>Better API -> less code in your project
+                        <ul>
                             <li>All logic is in libdnf5</li>
                         </ul>
                     </li>
@@ -269,16 +279,18 @@
             </section>
 
             <section>
-                <h3>Features</h3>
+                <h4>Features</h4>
                 <ul>
                     <li>Lightweight as Microdnf and fully featured as DNF</li>
                     <li>Integration of plugins into LIBDNF5 library</li>
                     <li>Fully integrated Modularity in LIBDNF5 workflows</li>
                     <li>New Daemon with support of Comps groups and modules</li>
                     <li>Improved API</li>
-                    <li class="fragment fade-left">Performance improvement
-                        <ul>
-                            <li class="fragment fade-left">Loading of repositories</li>
+                    <li>Performance improvement
+                        <ul class="fragment fade-left">
+                            <li>Loading of repositories</li>
+                            <li>Optional download of filelists</li>
+                            <li>RPM queries</li>
                         </ul>
                     </li>
                 </ul>
@@ -348,23 +360,6 @@
             </section>
 
             <section>
-                <h3>Features</h3>
-                <ul>
-                    <li>Lightweight as Microdnf and fully featured as DNF</li>
-                    <li>Integration of plugins into LIBDNF5 library</li>
-                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
-                    <li>New Daemon with support of Comps groups and modules</li>
-                    <li>Improved API</li>
-                    <li>Performance improvement
-                        <ul>
-                            <li>Loading of repositories</li>
-                            <li class="fragment fade-left">Optional download of filelists</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-
-            <section>
                 <h4>Optional download of filelists</h4>
                 <div style="display: flex; text-align: left; font-size: 80%;">
                     <div style="flex: 50%;">
@@ -400,24 +395,6 @@
                         </ul>
                     </div>
                 </div>
-            </section>
-
-            <section>
-                <h3>Features</h3>
-                <ul>
-                    <li>Lightweight as Microdnf and fully featured as DNF</li>
-                    <li>Integration of plugins into LIBDNF5 library</li>
-                    <li>Fully integrated Modularity in LIBDNF5 workflows</li>
-                    <li>New Daemon with support of Comps groups and modules</li>
-                    <li>Improved API</li>
-                    <li>Performance improvement
-                        <ul>
-                            <li>Loading of repositories</li>
-                            <li>Optional download of filelists</li>
-                            <li class="fragment fade-left">RPM queries</li>
-                        </ul>
-                    </li>
-                </ul>
             </section>
 
             <section>
@@ -595,28 +572,27 @@
             <section>
                 <h4>Adoption of DNF5 by other teams</h4>
                 <ul>
-                    <li class="fragment fade-left">DNF5 API stability
+                    <li>DNF5 API stability
                         <ul>
-                            <li class="fragment fade-left">Stabilizing of API during Fedora 38</li>
+                            <li>Stabilizing of API during Fedora 38</li>
                         </ul>
                     </li>
-                    <li class="fragment fade-left">Why to be an early adopter of DNF5?
+                    <li>Why to be an early adopter of DNF5?
                         <ul>
-                            <li class="fragment fade-left">Application using DNF CLI
+                            <li>Application using DNF CLI
                                 <ul>
-                                    <li class="fragment fade-left">Test your application and report missing commands or
+                                    <li>Test your application and report missing commands or
                                         options</li>
                                 </ul>
                             </li>
-                            <li class="fragment fade-left">Application using DNF, hawkey, or libdnf API
+                            <li>Application using DNF, hawkey, or libdnf API
                                 <ul>
-                                    <li class="fragment fade-left">Help us with shaping API</li>
-                                    <li class="fragment fade-left">Share with us your use cases</li>
-                                    <li class="fragment fade-left">Request missing features</li>
+                                    <li>Help us with shaping API</li>
+                                    <li>Share with us your use cases</li>
+                                    <li>Request missing features</li>
                                 </ul>
                             </li>
-                            <li class="fragment fade-left">Planned removal of dnf, python3-dnf, python3-hawkey, libdnf,
-                                python3-libdnf, dnf-plugins from Fedora distribution</li>
+                            <li>Planned removal of dnf, python3-dnf, python3-hawkey, libdnf, python3-libdnf, dnf-plugins from Fedora distribution</li>
                         </ul>
                     </li>
                 </ul>
@@ -976,8 +952,16 @@
                     </li>
                     <li>Red Hatters
                         <ul>
-                            <li>Slack</li>
-                            <li>Mailing list (TBD)</li>
+                            <li>Slack
+                                <ul>
+                                    <li># team-software-management</li>
+                                </ul>
+                            </li>
+                            <li>Mailing list
+                                <ul>
+                                    <li>TBD</li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
