@@ -1,9 +1,9 @@
 #roadmap-diagram-grid {
     display: grid;
     grid-template-areas:
-        ".                   dnf5-released      commands-1    commands-2       .           ."
-        ".                   .                  commands-1    commands-2       .           ."
-        ".                   microdnf-obsoleted commands-1    microdnf-removal .           ."
+        ".                   dnf5-released      dnf5-adoption libdnf5-adoption .           ."
+        ".                   api-stabilization  .             .                .           ."
+        ".                   microdnf-obsoleted .             microdnf-removal .           ."
         ".                   .                  dnf-obsoleted .                dnf-removal ."
         "roadmap-dummy-start .                  .             .                .           roadmap-dummy-end"
         ".                   fedora-38          fedora-39     fedora-40        fedora-41   .";
@@ -15,14 +15,18 @@
     background-color: #a07cbc;
 }
 
-#commands-1 {
-    grid-area: commands-1;
+#api-stabilization {
+    grid-area: api-stabilization;
     background-color: #a07cbc;
-    align-items: start;
 }
 
-#commands-2 {
-    grid-area: commands-2;
+#dnf5-adoption {
+    grid-area: dnf5-adoption;
+    background-color: #a07cbc;
+}
+
+#libdnf5-adoption {
+    grid-area: libdnf5-adoption;
     background-color: #a07cbc;
 }
 
@@ -89,7 +93,7 @@
 .roadmap-diagram-block {
     float: left;
     margin: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 8px;
     border: 1px solid rgb(200, 200, 200);
     border-radius: 16px;
