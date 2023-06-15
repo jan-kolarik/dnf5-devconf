@@ -106,6 +106,8 @@ const initChart = function(Reveal){
 			}
 		}
 
+		Chart.register(ChartDataLabels);
+
 		canvas.chart = new Chart(ctx, { type: canvas.getAttribute("data-chart"), data: chartData, options: chartOptions });
 
 	}

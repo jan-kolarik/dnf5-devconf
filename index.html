@@ -348,7 +348,18 @@ DNF5, 1.42, 25.1, 2.57
         "datasets" : [{ "backgroundColor": "#51a2da" }, { "backgroundColor": "#a07cbc" } ]
     },
     "options": { 
-        "devicePixelRatio": 4
+        "devicePixelRatio": 4,
+        "plugins": {
+            "datalabels": {
+                "anchor": "end",
+                "align": "top",
+                "formatter": "Math.round",
+                "font": {
+                    "weight": "bold",
+                    "size": 16
+                }
+            }
+        }
     }
 }
 -->
@@ -570,6 +581,7 @@ DNF5, 1.42, 25.1, 2.57
 
     <!-- New plugins -->
     <script src="plugin/charts/chart.min.js"></script>
+    <script src="plugin/charts/chartjs-plugin-datalabels.min.js"></script>
     <script src="plugin/charts/plugin.js"></script>
 
     <!-- Custom scripts -->
